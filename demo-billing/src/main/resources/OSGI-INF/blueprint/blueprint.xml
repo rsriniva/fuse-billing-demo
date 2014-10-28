@@ -13,20 +13,14 @@
     <property name="dataGenerator" ref="dataGenerator" />
     <property name="dataConverter" ref="dataConverter" />
   </bean>
+  <bean id="dataSourcePS" class="org.commons.dbcp.BasicDataSource">
+    <property name="driverClassName" value="org.postgresql.Driver" />
+    <property name="url" value="jdbc:postgresql://127.9.32.130:5432/postgreslab" />
+    <property name="username" value="admin97dk4uz" />
+    <property name="password" value="1_zmggEp2iL7" />
+  </bean>
   <camelContext trace="false" id="blueprintContext" xmlns="http://camel.apache.org/schema/blueprint">
-    <routeBuilder id="genData" ref="genDataRoute"/>
-  <!-- 
-    <route customId="true" id="genData">
-        <from uri="timer:foo?period=5000"/>
-        <setBody>
-            <method ref="dataGenerator" method="genRandomData"></method>
-        </setBody>
-        <marshal>
-          <json library="Jackson" prettyPrint="true"/>
-        </marshal>
-        <to uri="file:src/data" />
-    </route>
-  -->
+    <routeBuilder ref="genDataRoute" id="genData"/>
 </camelContext>
 
 </blueprint>
